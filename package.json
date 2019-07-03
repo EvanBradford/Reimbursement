@@ -1,0 +1,22 @@
+{
+  "name": "project1-reimbursement",
+  "version": "1.0.0",
+  "description": "\"\"\u001b[allows employees to request reimbursements and admins to approve and deny those requests",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EvanBradford/project1-reimbursement"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Evan Bradford"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}
