@@ -31,7 +31,6 @@ public class LoginServlet extends HttpServlet {
 			{
 				user = userDAO.loginA(email, password);
 			}
-			
 			if( user == null) {
 				System.out.println("Invalid Email/Password");
 			}
