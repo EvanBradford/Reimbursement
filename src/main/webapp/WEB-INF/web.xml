@@ -31,6 +31,26 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>UpdateUserServlet</display-name>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>servlets.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <url-pattern>/UpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddReimbursementServlet</display-name>
+    <servlet-name>AddReimbursementServlet</servlet-name>
+    <servlet-class>servlets.AddReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddReimbursementServlet</servlet-name>
+    <url-pattern>/AddReimbursementServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ListUserServlet</display-name>
     <servlet-name>ListUserServlet</servlet-name>
     <servlet-class>servlets.ListUserServlet</servlet-class>
