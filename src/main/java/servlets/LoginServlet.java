@@ -23,15 +23,22 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("Email:" + email +",password:" + password);
 			ReOracle userDAO = new ReOracle();
 			users user;
+			admin = admin.toUpperCase();
 			if(admin.equals("ADMIN"))
 			{
 				user = userDAO.loginA(email, password);
+				response.sendRedirect("homeAdmin.html");
 			}
-			else
+			else if(admin.equals("EMPLOYEE"))
 			{
 				user = userDAO.loginE(email, password);
+				response.sendRedirect("homeEmp.html");	
 			}
-			if( user == null) {
+			else {
+				System.out.println("Invalid Account Type");
+				return;
+			}
+			if(user == null) {
 				System.out.println("Invalid Email/Password");
 			}
 			else {
@@ -41,6 +48,6 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println(response.getWriter().append("Served at: ").append(request.getContextPath()));
 	}
 }

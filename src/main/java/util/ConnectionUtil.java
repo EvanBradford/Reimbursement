@@ -30,26 +30,27 @@ public class ConnectionUtil {
 		try {
 			// load information from properties file
 			Properties props = new Properties();
-			in = ConnectionUtil.class.getClassLoader().getResourceAsStream("connection.properties");
-			props.load(in);
+			//in = ConnectionUtil.class.getClassLoader().getResourceAsStream("connection.properties");
+			//props.load(in);
 
 			// get the connection object
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection con = null;
 
-			String endpoint = props.getProperty("jdbc.url");
-			String username = props.getProperty("jdbc.username");
-			String password = props.getProperty("jdbc.password");
+			String endpoint = "jdbc:oracle:thin:@test-db.csjpzdmxvpim.us-east-2.rds.amazonaws.com:1521:ORCL";//props.getProperty("jdbc.url");
+			String username = "EB012914";//props.getProperty("jdbc.username");
+			String password = "eb-28240";//props.getProperty("jdbc.password");
 
 			con = DriverManager.getConnection(endpoint, username, password);
 			connectionInstance = con;
 			return connectionInstance;
 		} catch (Exception e) {
+		e.printStackTrace();
 			log.error("Unable to get connection to database");
 		} finally {
 			try {
-				in.close();
-			} catch (IOException e) {
+				//in.close();
+			} catch (Exception e) {
 
 			}
 		}

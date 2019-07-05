@@ -25,6 +25,17 @@ public class system {
 		emp.viewInformation(emp.getEmployeeId());
 		emp.viewRequests(emp.getEmployeeId());
 		
+		
+//		String EMPLOYEETYPE = "ADMIN";
+//		String FIRSTNAME = "AD";
+//		String LASTNAME = "MIN";
+//		EMAIL = "admin@email.com";
+//		PASSWORD = "12345";
+//		String ADDRESS = "1234 Admin Lane";
+//		String STARTDATE = "2/24/2005";
+//		String STATUS = "ACTIVE";
+//		ad.registerEmployees(EMPLOYEETYPE, FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ADDRESS, STARTDATE, STATUS);
+		
 //		emp.updateInformation(emp.getEmployeeId(), FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ADDRESS, STARTDATE, STATUS);
 //		
 //		emp.viewInformation(emp.getEmployeeId());
