@@ -19,10 +19,17 @@
 	</form>
 	<a href = "ListUserServlet">Display Account Info</a> <br/>
 	View All Requests <br/>
+	<table id="requestsTbl" border="1">
+       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Employee Number</th></tr></thead>
+       <tbody>
+       		
+       </tbody>
+	</table>
 	<form action="ListSpecificServlet" method="GET">
     	Employee Number: <input type="number" name = "id" required /> <br/>
 		<button type="submit">Submit</button> <br/>
 	</form>
+	
 	<script>
         function loadAccount(){
             console.log('JavaScript block')
@@ -30,6 +37,25 @@
             ajax(url, "GET", function(response){console.log(response);});
         }
     </script>
-	<a href = updateUser.html>Update User Info</a>
+	<div id="users">
+		<a href = "ListUserServlet">Display Account Info</a> <br/>
+	   <table id="accountTbl" border="1">
+	       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
+	       <tbody>
+	       		
+	       </tbody>
+	   </table>
+    </div>
+    <form action="UpdateUserServlet" method="GET">
+    	ID Number: <input type="number" name = "id" required /> <br/>
+    	Firstname: <input type="text" name = "firstname" required /> <br/>
+    	Lastname: <input type="text" name = "lastname" required /> <br/>
+		Email: <input type="email" name="email" required /> <br/>
+		Password: <input type="password" name="password" required /> <br/>
+		Address: <input type="text" name = "address" required /> <br/>
+		Startdate: <input type="date" name = "startdate" required /> <br/>
+		
+		<button type="submit">UPDATE</button> <br/>
+	</form>
 </body>
 </html>
