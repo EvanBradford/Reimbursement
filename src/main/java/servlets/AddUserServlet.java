@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import application.employees;
 import dao.ReOracle;
 
 /**
@@ -26,12 +25,6 @@ public class AddUserServlet extends HttpServlet {
 		String address = request.getParameter("address");
 		String startdate = request.getParameter("startdate");
 		String status = "ACTIVE";
-		System.out.println("Name: "+ firstName + " " + lastName + ", email: " + email + ", password: " + password);
-		employees user = new employees();
-		user.setFirstname(firstName);
-		user.setLastname(lastName);
-		user.setEmail(email);
-		user.setPassword(password);
 		
 		ReOracle userDAO = new ReOracle();
 		try {

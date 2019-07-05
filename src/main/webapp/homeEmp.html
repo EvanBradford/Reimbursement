@@ -23,6 +23,13 @@
     	Employee Number: <input type="number" name = "id" required /> <br/>
 		<button type="submit">Submit</button> <br/>
 	</form>
+	<script>
+        function loadAccount(){
+            console.log('JavaScript block')
+            var url = "http://localhost:8080/Reimbursement2/ListUserServlet";
+            ajax(url, "GET", function(response){console.log(response);});
+        }
+    </script>
 	<a href = updateUser.html>Update User Info</a>
 </body>
 </html>

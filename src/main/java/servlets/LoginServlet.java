@@ -25,11 +25,11 @@ public class LoginServlet extends HttpServlet {
 			users user;
 			if(admin.equals("ADMIN"))
 			{
-				user = userDAO.loginE(email, password);
+				user = userDAO.loginA(email, password);
 			}
 			else
 			{
-				user = userDAO.loginA(email, password);
+				user = userDAO.loginE(email, password);
 			}
 			if( user == null) {
 				System.out.println("Invalid Email/Password");
