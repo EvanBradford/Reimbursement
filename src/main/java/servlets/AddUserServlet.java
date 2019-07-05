@@ -18,7 +18,7 @@ public class AddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = -6545567095900943875L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String type = "EMPLOYEE";
+		String type = request.getParameter("type");
 		String firstName = request.getParameter("firstname");//"adam";
 		String lastName = request.getParameter("lastname");//"adam";
 		String email = request.getParameter("email");//"adam@gmail.com";

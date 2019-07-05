@@ -39,5 +39,45 @@
     <servlet-name>ListUserServlet</servlet-name>
     <url-pattern>/ListUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListResolvedServlet</display-name>
+    <servlet-name>ListResolvedServlet</servlet-name>
+    <servlet-class>servlets.ListResolvedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListResolvedServlet</servlet-name>
+    <url-pattern>/ListResolvedServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListUnresolvedServlet</display-name>
+    <servlet-name>ListUnresolvedServlet</servlet-name>
+    <servlet-class>servlets.ListUnresolvedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListUnresolvedServlet</servlet-name>
+    <url-pattern>/ListUnresolvedServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListSpecificServlet</display-name>
+    <servlet-name>ListSpecificServlet</servlet-name>
+    <servlet-class>servlets.ListSpecificServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListSpecificServlet</servlet-name>
+    <url-pattern>/ListSpecificServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
   
 </web-app>

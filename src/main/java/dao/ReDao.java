@@ -11,6 +11,7 @@ public interface ReDao {
 	List<users> getAll() throws Exception;
 	employees getInfo(int empID) throws Exception;
 	List<reimbursements> getAllRe() throws Exception;
+	List<reimbursements> getAllUnRe() throws Exception;
 	List<reimbursements> getRe(int empID) throws Exception;
 	employees loginE(String email, String password) throws Exception;
 	admin loginA(String email, String password) throws Exception;

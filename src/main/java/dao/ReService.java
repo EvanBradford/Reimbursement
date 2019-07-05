@@ -22,6 +22,11 @@ public class ReService {
 		return dao.getAllRe();
 	}
 	
+	public static List<reimbursements> getAllUnRe() throws Exception
+	{
+		return dao.getAllUnRe();
+	}
+	
 	public static List<reimbursements> getRe(int empID) throws Exception
 	{
 		return dao.getRe(empID);
