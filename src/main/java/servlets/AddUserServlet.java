@@ -29,10 +29,11 @@ public class AddUserServlet extends HttpServlet {
 		ReOracle userDAO = new ReOracle();
 		try {
 			userDAO.insertEmp(type, firstName, lastName, email, password, address, startdate, status);
+			System.out.println("Account Created");
+			response.sendRedirect("homeEmp.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 }

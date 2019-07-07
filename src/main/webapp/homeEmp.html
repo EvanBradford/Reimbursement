@@ -29,14 +29,6 @@
     	Employee Number: <input type="number" name = "id" required /> <br/>
 		<button type="submit">Submit</button> <br/>
 	</form>
-	
-	<script>
-        function loadAccount(){
-            console.log('JavaScript block')
-            var url = "http://localhost:8081/Reimbursement2/ListUserServlet";
-            ajax(url, "GET", function(response){console.log(response);});
-        }
-    </script>
 	<div id="users">
 		<a href = "ListUserServlet">Display Account Info</a> <br/>
 	   <table id="accountTbl" border="1">

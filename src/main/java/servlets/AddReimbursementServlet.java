@@ -30,7 +30,6 @@ public class AddReimbursementServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println(response.getWriter().append("Served at: ").append(request.getContextPath()));
 	}
 }
