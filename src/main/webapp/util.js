@@ -1,4 +1,3 @@
-
 function ajaxGET(url, formData) {
     console.log(formData);
     var promiseObj = new Promise(function (resolve, reject) {

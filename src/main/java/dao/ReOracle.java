@@ -95,7 +95,7 @@ public class ReOracle implements ReDao {
 		List<reimbursements> list;
 		
 		try {			
-			String sql = "select * from REIMBURSEMENTS";
+			String sql = "select * from REIMBURSEMENTS WHERE STATUS != 'SUBMITTED'";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			

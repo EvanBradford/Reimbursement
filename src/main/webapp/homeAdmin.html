@@ -34,7 +34,7 @@
 	           
 	
 	            function loadUsers(){
-	                console.log('loadProducts');
+	                console.log('loadUsers');
 	                var url = "http://localhost:8080/Reimbursement2/ListUserServlet";
 	                ajaxGET(url).then(function (response) {
 	                    console.log(response);
@@ -65,15 +65,84 @@
 	    </script>
 	
 	<table id="requestsTbl" border="1">
-       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Employee Number</th></tr></thead>
+       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Status</th><th>Employee Number</th></tr></thead>
        <tbody>
        		
        </tbody>
 	</table>
 	
 	
-    <a href = "ListResolvedServlet">Display Resolved Requests</a> <br/>
-    <a href = "ListUnresolvedServlet">Display Unresolved Requests</a> <br/>
+    <button onclick = "loadRequests()">Display Resolved Requests</button> <br/>
+    
+    <script>        
+            console.log('JavaScript block'); 
+           
+
+            function loadRequests(){
+                console.log('loadUnRequests');
+                var url = "http://localhost:8080/Reimbursement2/ListResolvedServlet";
+                ajaxGET(url).then(function (response) {
+                    console.log(response);
+                    var products = JSON.parse(response);
+                    console.log(products.length);
+                    var tbody = "";
+                    
+                    
+                    for(var i=0; i<products.length;i++){
+                        var productObj = products[i];
+                        tbody += "<tr>";
+                        tbody += "<td>"+productObj.requestId+"</td>";
+                        tbody += "<td>"+productObj.amount+"</td>";
+                        tbody += "<td>"+productObj.purpose+"</td>";
+                        tbody += "<td>"+productObj.submitDate+"</td>";
+                        tbody += "<td>"+productObj.status+"</td>";
+                        tbody += "<td>"+productObj.employee_id+"</td>";
+                        tbody += "</tr>";
+                    }
+                    console.log(tbody);
+                    document.querySelector("#requestsTbl>tbody").innerHTML= tbody;
+                    
+
+                });
+            }
+
+    </script>
+    
+    <button onclick = "loadUnRequests()" id = "listUnresolved">Display Unresolved Requests</button> <br/>
+		
+	<script>        
+            console.log('JavaScript block'); 
+           
+
+            function loadUnRequests(){
+                console.log('loadUnRequests');
+                var url = "http://localhost:8080/Reimbursement2/ListUnresolvedServlet";
+                ajaxGET(url).then(function (response) {
+                    console.log(response);
+                    var products = JSON.parse(response);
+                    console.log(products.length);
+                    var tbody = "";
+                    
+                    
+                    for(var i=0; i<products.length;i++){
+                        var productObj = products[i];
+                        tbody += "<tr>";
+                        tbody += "<td>"+productObj.requestId+"</td>";
+                        tbody += "<td>"+productObj.amount+"</td>";
+                        tbody += "<td>"+productObj.purpose+"</td>";
+                        tbody += "<td>"+productObj.submitDate+"</td>";
+                        tbody += "<td>"+productObj.status+"</td>";
+                        tbody += "<td>"+productObj.employee_id+"</td>";
+                        tbody += "</tr>";
+                    }
+                    console.log(tbody);
+                    document.querySelector("#requestsTbl>tbody").innerHTML= tbody;
+                    
+
+                });
+            }
+
+    </script>
     
     <h3>Type a specific account number to see requests for it</h3>
     <form action="ListSpecificServlet" method="GET">
