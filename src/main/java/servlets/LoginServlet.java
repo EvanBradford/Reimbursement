@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import application.employees;
 import application.users;
 import dao.ReOracle;
 
@@ -32,6 +33,8 @@ public class LoginServlet extends HttpServlet {
 			else if(admin.equals("EMPLOYEE"))
 			{
 				user = userDAO.loginE(email, password);
+				employees emp = userDAO.loginE(email, password);
+				System.out.println(userDAO.getInfo(emp.getEmployeeId()));
 				response.sendRedirect("homeEmp.html");	
 			}
 			else {

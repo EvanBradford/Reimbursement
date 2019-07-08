@@ -30,10 +30,9 @@ public class AddUserServlet extends HttpServlet {
 		try {
 			userDAO.insertEmp(type, firstName, lastName, email, password, address, startdate, status);
 			System.out.println("Account Created");
-			response.sendRedirect("homeEmp.html");
+			response.sendRedirect("homeAdmin.html");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 }
