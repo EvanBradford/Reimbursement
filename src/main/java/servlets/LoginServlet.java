@@ -15,7 +15,7 @@ import dao.ReOracle;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String email = request.getParameter("email");//"john@gmail.com";
 			String password  = request.getParameter("password");//"pass123";
