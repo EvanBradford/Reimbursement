@@ -30,6 +30,7 @@ public class AddReimbursementServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(response.getWriter().append("Served at: ").append(request.getContextPath()));
+		//System.out.println(response.getWriter().append("Served at: ").append(request.getContextPath()));
+		response.sendRedirect("homeEmp.html");
 	}
 }

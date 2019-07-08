@@ -15,7 +15,7 @@
     	Purpose: <input type="text" name = "purpose" required /> <br/>
     	Submitted Date: <input type="date" name = "date" required /> <br/>
     	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit">Submit</button> <br/>
+		<button type="submit" onclick = "submitted">Submit</button> <br/>
 	</form>
 	View All Requests <br/>
 	<table id="requestsTbl" border="1">
@@ -24,10 +24,51 @@
        		
        </tbody>
 	</table>
-	<form action="ListSpecificServlet" method="GET">
+	<script>
+	 	console.log('JavaScript block'); 
+    	function submitted()
+    	{
+    		alert("New Request Created");
+    	}
+	</script>
+	<form>
     	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit">Submit</button> <br/>
+		<button type="submit" onclick = "loadUsers()">Submit</button> <br/>
 	</form>
+	
+	<script>        
+          console.log('JavaScript block');
+
+          function loadUsers(){
+              console.log('loadUsers');
+              var url = "http://localhost:8080/Reimbursement2/ListSpecificServlet";
+              ajaxGET(url).then(function (response) {
+                  console.log(response);
+                  var products = JSON.parse(response);
+                  console.log(products.length);
+                  var tbody = "";
+                  
+                  
+                  for(var i=0; i<products.length;i++){
+                      var productObj = products[i];
+                      tbody += "<tr>";
+                      tbody += "<td>"+productObj.employeeId+"</td>";
+                      tbody += "<td>"+productObj.employeeType+"</td>";
+                      tbody += "<td>"+productObj.firstname+"</td>";
+                      tbody += "<td>"+productObj.lastname+"</td>";
+                      tbody += "<td>"+productObj.email+"</td>";
+                      tbody += "<td>"+productObj.address+"</td>";
+                      tbody += "<td>"+productObj.startDate+"</td>";
+                      tbody += "</tr>";
+                  }
+                  console.log(tbody);
+                  document.querySelector("#AccountsTbl>tbody").innerHTML= tbody;
+                  
+
+              });
+          }
+  </script>
+	
 	<div id="users">
 	   <table id="accountTbl" border="1">
 	       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
