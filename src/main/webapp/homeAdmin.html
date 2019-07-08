@@ -19,13 +19,13 @@
 		Address: <input type="text" name = "address" required /> <br/>
 		Startdate: <input type="date" name = "startdate" required /> <br/>
 		
-		<button type="submit">Submit</button> <br/>
+		<button type="submit" onclick = "submitted()">Submit</button> <br/>
 	</form>
-	  <table id="AccountsTbl" border="1">
-		       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
-		       <tbody>
-		       </tbody>
-		   </table>
+	<table id="AccountsTbl" border="1">
+	       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
+	       <tbody>
+	       </tbody>
+	</table>
 	    <button  onclick="loadUsers()" id = "listUser">Display Accounts</button> <br/>
 		
 		<script>        
@@ -75,8 +75,10 @@
     
     <script>        
             console.log('JavaScript block'); 
-           
-
+           	function submitted()
+           	{
+           		alert("New Account Created");
+           	}
             function loadRequests(){
                 console.log('loadRequests');
                 var url = "http://localhost:8080/Reimbursement2/ListResolvedServlet";
@@ -132,17 +134,43 @@
                         tbody += "<td>"+productObj.submitDate+"</td>";
                         tbody += "<td>"+productObj.status+"</td>";
                         tbody += "<td>"+productObj.employee_id+"</td>";
-                        tbody += "<td>" + '<button id="approve">Approve</button>' + "</td>";
-                        tbody += "<td>" + '<button id="approve">Deny</button>' + "</td>";
+                        tbody += "<td>" + '<button onclick = "approve(' + productObj.employee_id + ')" id="approve">Approve</button>' + "</td>";
+                        tbody += "<td>" + '<button onclick = "deny(' + productObj.employee_id + ')" id="approve">Deny</button>' + "</td>";
+                        //"onClickDelete(' + objArr[i]["empID"]
                         tbody += "</tr>";
                     }
                     console.log(tbody);
                     document.querySelector("#requestsTbl>tbody").innerHTML= tbody;
-                    
-
                 });
             }
-
+    </script>
+    
+    <script>
+	    function approve(id){
+	    	var xhr = new XMLHttpRequest();
+	    	var params = "id";
+	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/ApproveServlet" + "?" + params, true);
+	
+	    	xhr.onreadystatechange = function() {
+	    	    if(xhr.readyState == 4 && xhr.status == 200) {
+	    	        alert(xhr.responseText);
+	    	    }
+	    	}
+	    	xhr.send();
+	    }
+	    function deny(id)
+	    {
+	    	var xhr = new XMLHttpRequest();
+	    	var params = "id";
+	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/DenyServlet" + "?" + params, true);
+	
+	    	xhr.onreadystatechange = function() {
+	    	    if(xhr.readyState == 4 && xhr.status == 200) {
+	    	        alert(xhr.responseText);
+	    	    }
+	    	}
+	    	xhr.send();
+	    }
     </script>
     
     <h3>Type a specific account number to see requests for it</h3>

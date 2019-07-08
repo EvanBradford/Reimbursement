@@ -95,9 +95,31 @@
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>servlets.LogoutServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ApproveServlet</display-name>
+  	<servlet-name>ApproveServlet</servlet-name>
+  	<servlet-class>servlets.ApproveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DenyServlet</display-name>
+  	<servlet-name>DenyServlet</servlet-name>
+  	<servlet-class>servlets.DenyServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ApproveServlet</servlet-name>
+  	<url-pattern>/ApproveServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DenyServlet</servlet-name>
+  	<url-pattern>/DenyServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
