@@ -313,7 +313,7 @@ public class ReOracle implements ReDao {
 			throw new Exception("Unable to connect to database");
 		}
 		try {
-			String sql = "UPDATE ALLEMPLOYEES SET STATUS = APPROVED WHERE REQUESTID = ?";
+			String sql = "UPDATE REIMBURSEMENTS SET STATUS = 'APPROVED' WHERE REQUESTID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, reId);
 			ps.executeUpdate();
@@ -331,7 +331,7 @@ public class ReOracle implements ReDao {
 			throw new Exception("Unable to connect to database");
 		}
 		try {
-			String sql = "UPDATE ALLEMPLOYEES SET STATUS = DENIED WHERE REQUESTID = ?";
+			String sql = "UPDATE REIMBURSEMENTS SET STATUS = 'DENIED' WHERE REQUESTID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, reId);
 			ps.executeUpdate();

@@ -25,6 +25,7 @@ public class ListSpecificServlet extends HttpServlet {
 		setAccessControlHeaders(response);
 		int id = Integer.parseInt(request.getParameter("id"));
 		PrintWriter out = response.getWriter();
+		out.print(id);
 		List<reimbursements> list = null;
 		try {
 			list = userDAO.getRe(id);

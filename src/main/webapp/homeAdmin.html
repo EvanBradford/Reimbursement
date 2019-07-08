@@ -29,9 +29,6 @@
 	    <button  onclick="loadUsers()" id = "listUser">Display Accounts</button> <br/>
 		
 		<script>        
-	            console.log('JavaScript block'); 
-	           
-	
 	            function loadUsers(){
 	                console.log('loadUsers');
 	                var url = "http://localhost:8080/Reimbursement2/ListUserServlet";
@@ -74,7 +71,6 @@
     <button onclick = "loadRequests()">Display Resolved Requests</button> <br/>
     
     <script>        
-            console.log('JavaScript block'); 
            	function submitted()
            	{
            		alert("New Account Created");
@@ -111,9 +107,6 @@
     <button onclick = "loadUnRequests()" id = "listUnresolved">Display Unresolved Requests</button> <br/>
 		
 	<script>        
-            console.log('JavaScript block'); 
-           
-
             function loadUnRequests(){
                 console.log('loadUnRequests');
                 var url = "http://localhost:8080/Reimbursement2/ListUnresolvedServlet";
@@ -133,9 +126,8 @@
                         tbody += "<td>"+productObj.submitDate+"</td>";
                         tbody += "<td>"+productObj.status+"</td>";
                         tbody += "<td>"+productObj.employee_id+"</td>";
-                        tbody += "<td>" + '<button onclick = "approve(' + productObj.employee_id + ')" id="approve">Approve</button>' + "</td>";
-                        tbody += "<td>" + '<button onclick = "deny(' + productObj.employee_id + ')" id="approve">Deny</button>' + "</td>";
-                        //"onClickDelete(' + objArr[i]["empID"]
+                        tbody += "<td>" + '<button onclick = "approve(' + productObj.requestId + ')" id="approve">Approve</button>' + "</td>";
+                        tbody += "<td>" + '<button onclick = "deny(' + productObj.requestId + ')" id="approve">Deny</button>' + "</td>";
                         tbody += "</tr>";
                     }
                     console.log(tbody);
@@ -146,37 +138,56 @@
     
     <script>
 	    function approve(id){
+	    	console.log(id);
 	    	var xhr = new XMLHttpRequest();
-	    	var params = "id";
-	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/ApproveServlet" + "?" + params, true);
-	
-	    	xhr.onreadystatechange = function() {
-	    	    if(xhr.readyState == 4 && xhr.status == 200) {
-	    	        alert(xhr.responseText);
-	    	    }
-	    	}
-	    	xhr.send();
+	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/ApproveServlet?id=" + id, true);
+	    	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    	xhr.send("id=" + id);
+	    	loadUnRequests();
 	    }
 	    function deny(id)
 	    {
+	    	console.log(id);
 	    	var xhr = new XMLHttpRequest();
-	    	var params = "id";
-	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/DenyServlet" + "?" + params, true);
-	
-	    	xhr.onreadystatechange = function() {
-	    	    if(xhr.readyState == 4 && xhr.status == 200) {
-	    	        alert(xhr.responseText);
-	    	    }
-	    	}
+	    	xhr.open("GET", "http://localhost:8080/Reimbursement2/DenyServlet?id=" + id, true);
+	    	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	    	xhr.send();
+	    	loadUnRequests();
 	    }
     </script>
     
     <h3>Type a specific account number to see requests for it</h3>
-    <form action="ListSpecificServlet" method="GET">
+    <form>
     	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit">Submit</button> <br/>
+		<button type="submit" onclick = "loadSpecific(id)">Submit</button> <br/>
 	</form>
+	<script>
+		function loadSpecific(id){
+			console.log('loadSpecific');
+            var url = "http://localhost:8080/Reimbursement2/ListSpecificServlet";
+            ajaxGET(url + "?id=" + id).then(function (response) {
+                console.log(response);
+                var products = JSON.parse(response);
+                console.log(products.length);
+                var tbody = "";
+                
+                
+                for(var i=0; i<products.length;i++){
+                    var productObj = products[i];
+                    tbody += "<tr>";
+                    tbody += "<td>"+productObj.requestId+"</td>";
+                    tbody += "<td>"+productObj.amount+"</td>";
+                    tbody += "<td>"+productObj.purpose+"</td>";
+                    tbody += "<td>"+productObj.submitDate+"</td>";
+                    tbody += "<td>"+productObj.status+"</td>";
+                    tbody += "<td>"+productObj.employee_id+"</td>";
+                    tbody += "</tr>";
+                }
+                console.log(tbody);
+                document.querySelector("#requestsTbl>tbody").innerHTML= tbody;
+            });
+		}
+	</script>
     <a href = "LogoutServlet">Logout</a> <br/>
 </body>
 </html>
