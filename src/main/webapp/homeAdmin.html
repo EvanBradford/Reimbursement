@@ -24,7 +24,6 @@
 	  <table id="AccountsTbl" border="1">
 		       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
 		       <tbody>
-		       		
 		       </tbody>
 		   </table>
 	    <button  onclick="loadUsers()" id = "listUser">Display Accounts</button> <br/>
@@ -67,7 +66,7 @@
 	<table id="requestsTbl" border="1">
        <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Status</th><th>Employee Number</th></tr></thead>
        <tbody>
-       		
+       
        </tbody>
 	</table>
 	
@@ -79,7 +78,7 @@
            
 
             function loadRequests(){
-                console.log('loadUnRequests');
+                console.log('loadRequests');
                 var url = "http://localhost:8080/Reimbursement2/ListResolvedServlet";
                 ajaxGET(url).then(function (response) {
                     console.log(response);
@@ -133,6 +132,8 @@
                         tbody += "<td>"+productObj.submitDate+"</td>";
                         tbody += "<td>"+productObj.status+"</td>";
                         tbody += "<td>"+productObj.employee_id+"</td>";
+                        tbody += "<td>" + '<button id="approve">Approve</button>' + "</td>";
+                        tbody += "<td>" + '<button id="approve">Deny</button>' + "</td>";
                         tbody += "</tr>";
                     }
                     console.log(tbody);
