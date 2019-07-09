@@ -109,6 +109,13 @@
   	<servlet-name>DenyServlet</servlet-name>
   	<servlet-class>servlets.DenyServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SpecificUserServlet</display-name>
+  	<servlet-name>SpecificUserServlet</servlet-name>
+  	<servlet-class>servlets.SpecificUserServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/LogoutServlet</url-pattern>
@@ -120,6 +127,10 @@
   <servlet-mapping>
   	<servlet-name>DenyServlet</servlet-name>
   	<url-pattern>/DenyServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SpecificUserServlet</servlet-name>
+  	<url-pattern>/SpecificUserServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

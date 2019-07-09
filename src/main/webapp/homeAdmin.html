@@ -61,7 +61,7 @@
 	    </script>
 	
 	<table id="requestsTbl" border="1">
-       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Status</th><th>Employee Number</th></tr></thead>
+       <thead><tr><th>Request ID</th><th>Amount</th><th>Purpose</th><th>Submitted Date</th><th>Status</th><th>Employee Number</th></tr></thead>
        <tbody>
        
        </tbody>
@@ -157,21 +157,22 @@
     </script>
     
     <h3>Type a specific account number to see requests for it</h3>
-    <form>
-    	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit" onclick = "loadSpecific(id)">Submit</button> <br/>
-	</form>
+    <div>
+    	Employee Number: <input id = "empNum" type="number" name = "id" required /> <br/>
+		<button onclick = "loadSpecific()">Submit</button> <br/>
+	</div>
 	<script>
-		function loadSpecific(id){
-			console.log('loadSpecific');
+		function loadSpecific(){
+			var id = document.getElementById("empNum").value;
+			console.log('loadSpecific ' + id);
             var url = "http://localhost:8080/Reimbursement2/ListSpecificServlet";
-            ajaxGET(url + "?id=" + id).then(function (response) {
+            var formdata = "id=" +id;
+            ajaxGET(url, formdata).then(function (response) {
                 console.log(response);
+                console.log(typeof response);
                 var products = JSON.parse(response);
                 console.log(products.length);
                 var tbody = "";
-                
-                
                 for(var i=0; i<products.length;i++){
                     var productObj = products[i];
                     tbody += "<tr>";

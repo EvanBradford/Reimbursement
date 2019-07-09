@@ -2,7 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,34 +11,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import application.reimbursements;
+import application.users;
 import dao.ReOracle;
 
 /**
- * Servlet implementation class ListUserServlet
+ * Servlet implementation class SpecificUserServlet
  */
-public class ListSpecificServlet extends HttpServlet {
+public class SpecificUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReOracle userDAO = new ReOracle();
 		setAccessControlHeaders(response);
-		int id = Integer.parseInt(request.getParameter("id"));
 		PrintWriter out = response.getWriter();
-		List<reimbursements> list = null;
+		ArrayList<users> list = new ArrayList<users>();
+		users user = null;
+		int id = Integer.parseInt(request.getParameter("id"));
 		try {
-			list = userDAO.getRe(id);
+			user = userDAO.getInfo(id);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Gson gson = new Gson();
-		String json = gson.toJson(list);
+		String json = gson.toJson(user);
 		out.write(json.toString());
 		out.flush();
-		
-		//System.out.println(response.getWriter().append("Served at: ").append(request.getContextPath()));
 	}
-	
 	private void setAccessControlHeaders(HttpServletResponse resp) {
         //resp.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         resp.setHeader("Access-Control-Allow-Origin", "*");

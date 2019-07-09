@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employee</title>
+    <script src ="util.js"></script>
 </head>
 <body>
     Employee<br/>
@@ -15,11 +16,11 @@
     	Purpose: <input type="text" name = "purpose" required /> <br/>
     	Submitted Date: <input type="date" name = "date" required /> <br/>
     	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit" onclick = "submitted">Submit</button> <br/>
+		<button type="submit" onclick = "submitted()">Submit</button> <br/>
 	</form>
 	View All Requests <br/>
 	<table id="requestsTbl" border="1">
-       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Employee Number</th></tr></thead>
+       <thead><tr><th>Request ID</th><th>Ammount</th><th>Purpose</th><th>Submitted Date</th><th>Status</th><th>Employee Number</th></tr></thead>
        <tbody>
        		
        </tbody>
@@ -31,60 +32,98 @@
     		alert("New Request Created");
     	}
 	</script>
-	<form>
-    	Employee Number: <input type="number" name = "id" required /> <br/>
-		<button type="submit" onclick = "loadUsers()">Submit</button> <br/>
-	</form>
-	
-	<script>        
-          console.log('JavaScript block');
-
-          function loadUsers(){
-              console.log('loadUsers');
-              var url = "http://localhost:8080/Reimbursement2/ListSpecificServlet";
-              ajaxGET(url).then(function (response) {
-                  console.log(response);
-                  var products = JSON.parse(response);
-                  console.log(products.length);
-                  var tbody = "";
-                  
-                  
-                  for(var i=0; i<products.length;i++){
-                      var productObj = products[i];
-                      tbody += "<tr>";
-                      tbody += "<td>"+productObj.employeeId+"</td>";
-                      tbody += "<td>"+productObj.employeeType+"</td>";
-                      tbody += "<td>"+productObj.firstname+"</td>";
-                      tbody += "<td>"+productObj.lastname+"</td>";
-                      tbody += "<td>"+productObj.email+"</td>";
-                      tbody += "<td>"+productObj.address+"</td>";
-                      tbody += "<td>"+productObj.startDate+"</td>";
-                      tbody += "</tr>";
-                  }
-                  console.log(tbody);
-                  document.querySelector("#AccountsTbl>tbody").innerHTML= tbody;
-              });
-          }
-  </script>
+	<div>
+    	Employee Number: <input id = "empNum" type="number" name = "id" required /> <br/>
+		<button onclick = "loadSpecific()">Submit</button> <br/>
+	</div>
+	<script>
+		function loadSpecific(){
+			var id = document.getElementById("empNum").value;
+			console.log('loadSpecific ' + id);
+            var url = "http://localhost:8080/Reimbursement2/ListSpecificServlet";
+            var formdata = "id=" +id;
+            ajaxGET(url, formdata).then(function (response) {
+                console.log(response);
+                console.log(typeof response);
+                var products = JSON.parse(response);
+                console.log(products.length);
+                var tbody = "";
+                for(var i=0; i<products.length;i++){
+                    var productObj = products[i];
+                    tbody += "<tr>";
+                    tbody += "<td>"+productObj.requestId+"</td>";
+                    tbody += "<td>"+productObj.amount+"</td>";
+                    tbody += "<td>"+productObj.purpose+"</td>";
+                    tbody += "<td>"+productObj.submitDate+"</td>";
+                    tbody += "<td>"+productObj.status+"</td>";
+                    tbody += "<td>"+productObj.employee_id+"</td>";
+                    tbody += "</tr>";
+                }
+                console.log(tbody);
+                document.querySelector("#requestsTbl>tbody").innerHTML= tbody;
+            });
+		}
+	</script>
 	
 	<div id="users">
 	   <table id="accountTbl" border="1">
-	       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th></tr></thead>
+	       <thead><tr><th>Emp ID</th><th>Type</th><th>Firstname</th><th>Lastname</th><th>Email</th><th>Adress</th><th>Startdate</th><th>Status</th></tr></thead>
 	       <tbody>
 	       		
 	       </tbody>
 	   </table>
     </div>
+    
+    <div>
+    	Employee Number: <input id = "empNum2" type="number" name = "id" required /> <br/>
+		<button onclick = "loadUser()">Submit</button> <br/>
+	</div>
+	<script>
+		function loadUser(){
+			var id = document.getElementById("empNum2").value;
+			console.log('loadSpecific ' + id);
+            var url = "http://localhost:8080/Reimbursement2/SpecificUserServlet";
+            var formdata = "id=" + id;
+            ajaxGET(url, formdata).then(function (response) {
+                console.log(response);
+                console.log(typeof response);
+                var productObj = JSON.parse(response);
+                console.log(productObj);
+                var tbody = "";
+                    tbody += "<tr>";
+                    tbody += "<td>"+productObj.employeeId+"</td>";
+                    tbody += "<td>"+productObj.employeeType+"</td>";
+                    tbody += "<td>"+productObj.firstname+"</td>";
+                    tbody += "<td>"+productObj.lastname+"</td>";
+                    tbody += "<td>"+productObj.email+"</td>";
+                    tbody += "<td>"+productObj.address+"</td>";
+                    tbody += "<td>"+productObj.startDate+"</td>";
+                    tbody += "<td>"+productObj.status+"</td>";
+                    tbody += "</tr>";
+                    document.getElementById("id").value = productObj.employeeId;
+                    
+                
+                console.log(tbody);
+                document.querySelector("#accountTbl>tbody").innerHTML= tbody;
+            });
+		}
+    	function updated()
+    	{
+    		alert("Updated");
+    	}
+	</script>
+    
+    
     <form action="UpdateUserServlet" method="GET">
-    	ID Number: <input type="number" name = "id" required /> <br/>
-    	Firstname: <input type="text" name = "firstname" required /> <br/>
+    	ID Number: <input type="number" name = "id" id="id" required /> <br/>
+    	Firstname: <input type="text" name = "firstname" id="firstname" required /> <br/>
     	Lastname: <input type="text" name = "lastname" required /> <br/>
 		Email: <input type="email" name="email" required /> <br/>
 		Password: <input type="password" name="password" required /> <br/>
 		Address: <input type="text" name = "address" required /> <br/>
 		Startdate: <input type="date" name = "startdate" required /> <br/>
 		
-		<button type="submit">UPDATE</button> <br/>
+		<button type="submit" onclick = "updated()">UPDATE</button> <br/>
 	</form>
 	
 	<a href = "LogoutServlet">Logout</a>
