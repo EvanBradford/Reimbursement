@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +25,6 @@ public class SpecificUserServlet extends HttpServlet {
 		ReOracle userDAO = new ReOracle();
 		setAccessControlHeaders(response);
 		PrintWriter out = response.getWriter();
-		ArrayList<users> list = new ArrayList<users>();
 		users user = null;
 		int id = Integer.parseInt(request.getParameter("id"));
 		try {
